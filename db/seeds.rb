@@ -39,7 +39,7 @@ puts "🌱 Seeding data..."
 puts "🌱 Seeding users..."
 10.times do
   User.create(
-    name: Faker::Name.name,
+    username: Faker::Name.name,
     age: rand(10..100),
     bio: Faker::Lorem.paragraph(sentence_count: 20),
     image: Faker::Avatar.image,
