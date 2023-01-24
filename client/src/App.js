@@ -30,13 +30,13 @@ function App() {
 
   console.log(user)
 
-  // if (!user) return <Login onLogin={setUser} />;
+  if (!user) return <Login onLogin={setUser} />;
 
   return (
     <div className="App">
       <h1>ayyy</h1>
       
-      <NavBar />
+      <NavBar user={user} setUser={setUser} />
 
       <Switch>
 
@@ -69,7 +69,7 @@ function App() {
 
       </Switch>
 
-      <NavBar />
+      <NavBar user={user} setUser={setUser} />
     </div>
   );
 }
