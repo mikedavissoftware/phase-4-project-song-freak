@@ -12,12 +12,8 @@ class LikesController < ApplicationController
         redirect_to_song_path(@song)
 
     def destroy
-        if !(already_liked?)
-            flash[:notice] = "Cannot unlike"
-        else
             @like.destroy
-        end
-        redirect_to_song_path(@song)
+            redirect_to_song_path(@song)
     end
 
     private
@@ -35,3 +31,39 @@ class LikesController < ApplicationController
         @like = @song.likes.find(params[:id])
     end
 end
+
+
+
+
+# def create
+#     if already_liked?
+#         flash[:notice] = "You can't like more than once"
+#     else
+#         @song.likes.create(user_id: current_user.id)
+#     end
+#     redirect_to_song_path(@song)
+
+# def destroy
+#     if !(already_liked?)
+#         flash[:notice] = "Cannot unlike"
+#     else
+#         @like.destroy
+#     end
+#     redirect_to_song_path(@song)
+# end
+
+# private
+
+# def find_song
+#     @song = Song.find_by(params[:id]))
+# end
+
+# def already_liked?
+#     Like.where(user_id: current_user.id, song_id:
+#     params[:song_id]).exists?
+# end
+
+# def find_like
+#     @like = @song.likes.find(params[:id])
+# end
+# end
