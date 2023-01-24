@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     #May not want this when you introduce Auth, keep an eye on it
-    # skip_before_action :verify_authenticity_token
+    skip_before_action :verify_authenticity_token
     def index
         users = User.all
         render json: users
@@ -17,8 +17,9 @@ class UsersController < ApplicationController
     end
 
     def update
-        user = User.update!(user_params)
-        render json: user, status: :updated
+        user = set_user
+        user.update!(user_params)
+        render json: user
     end
 
     def destroy
