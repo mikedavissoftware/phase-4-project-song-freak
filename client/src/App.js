@@ -40,9 +40,6 @@ function App() {
 
         <Switch>
 
-          <Route path="/users/create">
-            <CreateAccount />
-          </Route>
           <Route path="/users/:id">
             <User />
           </Route>

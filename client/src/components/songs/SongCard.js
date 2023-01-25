@@ -8,10 +8,12 @@ export default function SongCard({song}) {
 
   const editedLink = `https://open.spotify.com/embed/track/${link.slice(31,53)}?utm_source=generator`
 
+  console.log(song.users)
+
   return (
     <>
     <h3>{title}</h3>
-    <h4>{artist} | <em>{genre}</em></h4>
+    <h4>{artist} | <em>{genre}</em> | Liked by {} users</h4>
 
     <iframe
       // style="border-radius:12px"

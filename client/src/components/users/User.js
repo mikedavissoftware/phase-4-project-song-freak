@@ -53,6 +53,8 @@ export default function User() {
   //   )
   // })
 
+  if (!user) return <h2>Loading...</h2>;
+
   return (
     <>
       {/* <div idName="user-detail">
