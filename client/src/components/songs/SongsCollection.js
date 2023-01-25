@@ -23,7 +23,6 @@ export default function SongsCollection() {
       ||song.artist.toString().includes(searchQuery.toLowerCase())
       ||song.genre.toString().toLowerCase().includes(searchQuery.toLowerCase())
       ||song.link.toString().toLowerCase().includes(searchQuery.toLowerCase())
-    
     )
   })
 
