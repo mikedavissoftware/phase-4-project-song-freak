@@ -1,6 +1,11 @@
 class SessionsController < ApplicationController
     skip_before_action :authorize, only: :create
 
+    def show
+        render json: @current_user
+    end
+
+
     def create
         user = User.find_by(username: params[:username])
         if user &.authenticate(params[:password])
@@ -15,5 +20,6 @@ class SessionsController < ApplicationController
         session.delete :user_id
         head :no_content
     end
+
 
 end

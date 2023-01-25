@@ -8,7 +8,7 @@ class SongsController < ApplicationController
 
     def show
         song = set_song
-        render json: song
+        render json: song, serializer: SongWithUsersSerializer
     end
 
     def create

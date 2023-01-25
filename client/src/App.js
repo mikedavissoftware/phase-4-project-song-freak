@@ -38,37 +38,37 @@ function App() {
       
       <NavBar user={user} setUser={setUser} />
 
-      <Switch>
+        <Switch>
 
-        <Route path="/users/create">
-          <CreateAccount />
-        </Route>
-        <Route path="/users/:id">
-          <User />
-        </Route>
-        <Route path="/users">
-          <UsersCollection />
-        </Route>
+          <Route path="/users/create">
+            <CreateAccount />
+          </Route>
+          <Route path="/users/:id">
+            <User />
+          </Route>
+          <Route path="/users">
+            <UsersCollection />
+          </Route>
 
-        <Route path="/songs/new">
-          <AddNewSong />
-        </Route>
-        <Route path="/songs/:id">
-          <Song />
-        </Route>
-        <Route path="/songs">
-          <SongsCollection />
-        </Route>
+          <Route path="/songs/new">
+            <AddNewSong />
+          </Route>
+          <Route path="/songs/:id">
+            <Song />
+          </Route>
+          <Route path="/songs">
+            <SongsCollection />
+          </Route>
 
-        <Route path="/me">
-          <MyAccount />
-        </Route>
-        <Route path="/">
-          {console.log(user)}
-          <Login onLogin={setUser} />
-        </Route>
+          <Route path="/me">
+            <MyAccount />
+          </Route>
+          <Route path="/">
+            {console.log(user)}
+            <Login onLogin={setUser} />
+          </Route>
 
-      </Switch>
+        </Switch>
 
       <NavBar user={user} setUser={setUser} />
     </div>

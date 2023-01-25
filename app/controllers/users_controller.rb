@@ -11,7 +11,8 @@ class UsersController < ApplicationController
     end
 
     def show
-        render json: @current_user, serializer: UserWithLikedSongsSerializer
+        user = set_user
+        render json: user, serializer: UserWithLikedSongsSerializer
     end
 
     def create
@@ -21,9 +22,8 @@ class UsersController < ApplicationController
     end
 
     def update
-        user = set_user
-        user.update!(user_params)
-        render json: user
+        @current_user.update!(user_params)
+        render json: @current_user, status: :updated
     end
 
     def destroy
