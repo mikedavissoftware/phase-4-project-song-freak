@@ -16,6 +16,7 @@ import Login from "./components/account/Login"
 import NavBar from "./components/NavBar"
 
 
+
 function App() {
   const [user, setUser] = useState(null);
 
@@ -40,9 +41,6 @@ function App() {
 
         <Switch>
 
-          <Route path="/users/create">
-            <CreateAccount />
-          </Route>
           <Route path="/users/:id">
             <User />
           </Route>

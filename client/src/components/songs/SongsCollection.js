@@ -18,24 +18,32 @@ export default function SongsCollection() {
     })
   }, [])
 
-  const filteredGamers = gamers.filter(gamer => {
+  const filteredSongs = songs.filter(song => {
     return (
-      gamer.name.toString().toLowerCase().includes(searchQuery.toLowerCase())
-      || Number(gamer.age).toString().includes(searchQuery)
-      || gamer.origin.toString().toLowerCase().includes(searchQuery.toLowerCase())
-      || gamer.gender.toString().toLowerCase().includes(searchQuery.toLowerCase())
-      || gamer.favorite.toString().toLowerCase().includes(searchQuery.toLowerCase())
-      || gamer.bio.toString().toLowerCase().includes(searchQuery.toLowerCase())
+      song.title.toString().toLowerCase().includes(searchQuery.toLowerCase())
+      ||song.artist.toString().includes(searchQuery.toLowerCase())
+      ||song.genre.toString().toLowerCase().includes(searchQuery.toLowerCase())
+      ||song.link.toString().toLowerCase().includes(searchQuery.toLowerCase())
+    
     )
   })
 
-  const mappedSongs = songs.map(song => {
+  const mappedSongs = filteredSongs.map(song => {
     return <SongCard key={song.id} song={song} />
   })
 
   return (
     <>
-    <input></input>
+    
+    <input
+     type="text"
+     id="song-search"
+     placeholder="Search for song.."
+     value={searchQuery}
+     onChange={(e) => setSearchQuery(e.target.value)}
+    >
+   
+    </input>
     <Item.Group >
       {mappedSongs}
     </Item.Group>
