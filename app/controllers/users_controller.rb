@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
     #May not want this when you introduce Auth, keep an eye on it
-    skip_before_action :verify_authenticity_token
+    # skip_before_action :verify_authenticity_token
     skip_before_action :authorize, only: :create
+
+    # wrap_parameters format: []
+
     def index
         users = User.all
         render json: users

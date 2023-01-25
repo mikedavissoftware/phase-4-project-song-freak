@@ -30,7 +30,7 @@ function App() {
 
   console.log(user)
 
-  if (!user) return <Login onLogin={setUser} />;
+  // if (!user) return <Login onLogin={setUser} />;
 
   return (
     <div className="App">
@@ -64,7 +64,8 @@ function App() {
           <MyAccount />
         </Route>
         <Route path="/">
-          <Login />
+          {console.log(user)}
+          <Login onLogin={setUser} />
         </Route>
 
       </Switch>

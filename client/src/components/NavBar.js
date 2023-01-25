@@ -10,9 +10,12 @@ export default function NavBar({user, setUser}) {
       }
     });
   }
+
+  console.log(user)
+
   return (
     <>
-    <Menu pointing horizontal style={{width: "350px", margin: "auto", textAlign: "center"}}>
+    <Menu pointing horizontal style={{width: "335px", margin: "auto", textAlign: "center"}}>
       <Menu.Item className="banger"> 
         <NavLink exact to="/users">
           Users
@@ -27,11 +30,11 @@ export default function NavBar({user, setUser}) {
 
       <Menu.Item className="banger">
         <NavLink to="/songs/new">
-          Gamers
+          Add Song!
         </NavLink>
       </Menu.Item>
 
-      {/* {user ? (
+      {user ? (
         <Menu.Item className="banger">
           <NavLink to="/me">
             Account
@@ -41,12 +44,12 @@ export default function NavBar({user, setUser}) {
         <Menu.Item className="banger">
             No Account
         </Menu.Item>
-      )} */}
+      )}
     </Menu>
 
-    {/* <button onClick = {handleLogoutClick}>
+    <button onClick = {handleLogoutClick}>
       Log Out
-    </button> */}
+    </button>
     </>
   )
 }

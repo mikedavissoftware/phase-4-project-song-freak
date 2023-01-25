@@ -5,5 +5,6 @@ class Song < ApplicationRecord
   validates :title, presence: true
   validates :artist, presence: true
   validates :genre, presence: true
-  validates :link, presence: true, inclusion: { in: %w(https://open.spotify.com/track/)}
+  validates :link, presence: true
+  #, inclusion: { in: %w(https://open.spotify.com/track/)}
 end
