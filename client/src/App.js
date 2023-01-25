@@ -36,8 +36,7 @@ function App() {
     <div className="App">
       <h1>ayyy</h1>
       
-      <NavBar user={user} setUser
-    ={setUser} />
+      <NavBar user={user} setUser={setUser} />
 
         <Switch>
 
@@ -65,7 +64,6 @@ function App() {
             <MyAccount />
           </Route>
           <Route path="/">
-            {console.log(user)}
             <Login onLogin={setUser} />
           </Route>
 
