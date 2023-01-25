@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 // import logo from './logo.svg';
 import './App.css';
 
-import CreateAccount from "./components/account/CreateAccount"
+
 import User from "./components/users/User"
 import UsersCollection from "./components/users/UsersCollection"
 import AddNewSong from "./components/songs/AddNewSong"
@@ -28,21 +28,19 @@ function App() {
     });
   }, []);
 
-  console.log(user)
+   //console.log(user)
 
   // if (!user) return <Login onLogin={setUser} />;
 
   return (
     <div className="App">
       <h1>ayyy</h1>
-      
+
       <NavBar user={user} setUser={setUser} />
 
         <Switch>
 
-          <Route path="/users/create">
-            <CreateAccount />
-          </Route>
+
           <Route path="/users/:id">
             <User />
           </Route>
@@ -61,10 +59,10 @@ function App() {
           </Route>
 
           <Route path="/me">
-            <MyAccount />
+            <MyAccount user={user} />
           </Route>
           <Route path="/">
-            {console.log(user)}
+            {/* {console.log(user)} */}
             <Login onLogin={setUser} />
           </Route>
 
