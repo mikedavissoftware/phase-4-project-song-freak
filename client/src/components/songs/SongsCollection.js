@@ -1,19 +1,29 @@
-import {useEffect} from "react"
+import {useEffect, useState} from "react"
+import { Item } from 'semantic-ui-react'
 
 
+import SongCard from "../songs/SongCard"
 
 
 export default function SongsCollection() {
 
+  const [songs, setSongs] = useState([])
+
   useEffect(() => {
     fetch("/songs")
     .then(r => r.json())
-    .then(userData => {console.log(userData)})
+    .then(songsData => {
+      setSongs(songsData)
+    })
   }, [])
 
+  const mappedSongs = songs.map(song => {
+    return <SongCard key={song.id} song={song} />
+  })
+
   return (
-    <div>
-      <h1>These are the songs.</h1>
-    </div>
+    <Item.Group >
+      {mappedSongs}
+    </Item.Group>
   )
 }

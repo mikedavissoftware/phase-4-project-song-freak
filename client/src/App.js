@@ -5,7 +5,6 @@ import { useEffect, useState } from "react"
 // import logo from './logo.svg';
 import './App.css';
 
-import CreateAccount from "./components/account/CreateAccount"
 import User from "./components/users/User"
 import UsersCollection from "./components/users/UsersCollection"
 import AddNewSong from "./components/songs/AddNewSong"
@@ -40,9 +39,6 @@ function App() {
 
         <Switch>
 
-          <Route path="/users/create">
-            <CreateAccount />
-          </Route>
           <Route path="/users/:id">
             <User />
           </Route>
