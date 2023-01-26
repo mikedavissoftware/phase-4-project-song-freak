@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react"
 import { Item } from 'semantic-ui-react'
+import AddNewSong from "./AddNewSong"
 
 
 import SongCard from "../songs/SongCard"
@@ -31,6 +32,10 @@ export default function SongsCollection() {
     return <SongCard key={song.id} song={song} />
   })
 
+  function handleAddNewSong(newSong) {
+    setSongs([...songs, newSong])
+  }
+
   return (
     <>
     
@@ -43,9 +48,12 @@ export default function SongsCollection() {
     >
    
     </input>
+    {/* <AddNewSong onAddNewSong={handleAddNewSong}/> */}
     <Item.Group >
       {mappedSongs}
     </Item.Group>
+
     </>
+    
   )
 }
