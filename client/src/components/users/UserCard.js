@@ -6,10 +6,6 @@ export default function UserCard({user, allSongs}) {
 
   const {id, name, age, bio, image, fav_genre, fav_song_id} = user
 
-  if (!allSongs) return <h4>Loading...</h4>;
-
-  // console.log(allSongs[fav_song_id].title)
-
   return (
     <Card 
       image={image}

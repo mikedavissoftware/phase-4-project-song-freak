@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-export default function MyAccount({user}) {
-  //console.log(user)
+export default function MyAccount({currentUser}) {
+  //console.log(currentUser)
   const [editUsername, setEditUsername] = useState("");
   const [editPassword, setEditPassword] = useState("");
   const [editPasswordConfirmation, setEditPasswordConfirmation] = useState("");
@@ -13,7 +13,7 @@ export default function MyAccount({user}) {
   const [editErrors, setErrors] = useState([]);
   const [editAccount, setEditAccount] = useState([])
 
-  console.log(user)
+  // console.log(currentUser)
   function handleSubmit(e) {
     e.preventDefault();
     setErrors([]);
@@ -39,10 +39,10 @@ export default function MyAccount({user}) {
     })
     .then((r) => r.json())
     .then( (editAccount)=> console.log(editAccount))
-             setEditAccount({
-                 username: "",
-                 password: "",
-             })
+      setEditAccount({
+        username: "",
+        password: "",
+      })
   }
 
 
@@ -54,7 +54,7 @@ export default function MyAccount({user}) {
       <input
         type="text"
         id="username"
-        placeholder="Enter username..."
+        placeholder={`Change from ${currentUser.username}`}
         value={editUsername.username}
         onChange={(e) => setEditUsername(e.target.value)}
       />
@@ -63,7 +63,7 @@ export default function MyAccount({user}) {
       <input
         type="password"
         id="password"
-        placeholder="Enter password..."
+        placeholder="Enter new password..."
         value={editPassword.password}
         onChange={(e) => setEditPassword(e.target.value)}
       />
@@ -72,7 +72,7 @@ export default function MyAccount({user}) {
       <input
         type="password"
         id="password_confirmation"
-        placeholder="Confirm password..."
+        placeholder="Confirm new password..."
         value={editPasswordConfirmation.passwordConfirmation}
         onChange={(e) => setEditPasswordConfirmation(e.target.value)}
       />
@@ -81,7 +81,7 @@ export default function MyAccount({user}) {
       <input
         type="text"
         id="image"
-        placeholder="Enter profile image url..."
+        placeholder="Enter new profile image URL..."
         value={editImage.image}
         onChange={(e) => setEditImage(e.target.value)}
       />
@@ -90,7 +90,7 @@ export default function MyAccount({user}) {
       <input
         type="text"
         id="bio"
-        placeholder="Create bio..."
+        placeholder="Enter new bio..."
         value={editBio.bio}
         onChange={(e) => setEditBio(e.target.value)}
       />
@@ -99,7 +99,7 @@ export default function MyAccount({user}) {
       <input
         type="number"
         id="age"
-        placeholder="Enter age..."
+        placeholder="Enter new age..."
         value={editAge}
         onChange={(e) => setEditAge(e.target.value)}
       />
@@ -108,7 +108,7 @@ export default function MyAccount({user}) {
       <input
         type="text"
         id="favGenre"
-        placeholder="Enter favorite genre..."
+        placeholder="Enter new favorite genre..."
         value={editFavGenre}
         onChange={(e) => setEditFavGenre(e.target.value)}
       />
@@ -117,7 +117,7 @@ export default function MyAccount({user}) {
       <input
         type="number"
         id="favSongId"
-        placeholder="Enter favorite song..."
+        placeholder="Enter new favorite song..."
         value={editFavSongId}
         onChange={(e) => setEditFavSongId(e.target.value)}
       />

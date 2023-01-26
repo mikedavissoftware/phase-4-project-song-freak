@@ -2,16 +2,16 @@ import { NavLink } from "react-router-dom"
 import { Menu } from "semantic-ui-react"
 
 
-export default function NavBar({user, setUser}) {
+export default function NavBar({currentUser, setCurrentUser}) {
   function handleLogoutClick() {
     fetch("/logout", { method: "DELETE" }).then((r) => {
       if (r.ok) {
-        setUser(null);
+        setCurrentUser(null);
       }
     });
   }
 
-  console.log(user)
+  console.log(currentUser)
 
   return (
     <>
@@ -34,7 +34,7 @@ export default function NavBar({user, setUser}) {
         </NavLink>
       </Menu.Item>
 
-      {user ? (
+      {currentUser ? (
         <Menu.Item className="banger">
           <NavLink to="/me">
             Account

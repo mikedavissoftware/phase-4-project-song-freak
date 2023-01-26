@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useParams, Link } from "react-router-dom"
 import { Item, Card } from 'semantic-ui-react'
 
+import UserSongsCollection from "./UserSongsCollection"
 
 
 export default function User() {
@@ -14,19 +15,20 @@ export default function User() {
     .then(r => r.json())
     .then(userData => {
       setUser(userData)
+      console.log(userData)
     })
   }, [id])
 
-  console.log(user)
+  // console.log(user.songs)
 
-  const [users, setUsers] = useState([])
-  useEffect(() => {
-    fetch(`/users`)
-    .then(r => r.json())
-    .then(usersData => {
-      setUsers(usersData)
-    })
-  }, [])
+  // const [users, setUsers] = useState([])
+  // useEffect(() => {
+  //   fetch(`/users`)
+  //   .then(r => r.json())
+  //   .then(usersData => {
+  //     setUsers(usersData)
+  //   })
+  // }, [])
 
   // const userSongs = user.songs.map((song) => {
   //   return (
@@ -55,8 +57,9 @@ export default function User() {
 
   if (!user) return <h2>Loading...</h2>;
 
-  return (
+  if (user) return (
     <>
+    <UserSongsCollection user={user} />
       {/* <div idName="user-detail">
         <Item.Image size='medium' src={user.image} />
         <Item.Content>

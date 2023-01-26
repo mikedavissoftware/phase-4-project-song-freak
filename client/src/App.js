@@ -18,14 +18,14 @@ import NavBar from "./components/NavBar"
 
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
   const [allSongs, setAllSongs] = useState([])
 
   useEffect(() => {
     // auto-login
     fetch("/me").then((r) => {
       if (r.ok) {
-        r.json().then((user) => setUser(user));
+        r.json().then((currentUser) => setCurrentUser(currentUser));
       }
     });
   }, []);
@@ -35,47 +35,47 @@ function App() {
     .then(r => r.json())
     .then(songsData => {
       setAllSongs(songsData)
+      console.log(allSongs)
     })
   }, [])
-
-  if (!user) return <Login onLogin={setUser} />;
 
   return (
     <div className="App">
       <h1>ayyy</h1>
 
-      <NavBar user={user} setUser={setUser} />
+      <NavBar currentUser={currentUser} setCurrentUser={setCurrentUser} />
 
-        <Switch>
+      {!currentUser ? <Login onLogin={setCurrentUser} /> :
+      <Switch>
 
-          <Route path="/users/:id">
-            <User />
-          </Route>
-          <Route path="/users">
-            <UsersCollection allSongs={allSongs} />
-          </Route>
+        <Route path="/users/:id">
+          <User />
+        </Route>
+        <Route path="/users">
+          <UsersCollection allSongs={allSongs} />
+        </Route>
 
-          <Route path="/songs/new">
-            <AddNewSong />
-          </Route>
-          <Route path="/songs/:id">
-            <Song />
-          </Route>
-          <Route path="/songs">
-            <SongsCollection />
-          </Route>
+        <Route path="/songs/new">
+          <AddNewSong />
+        </Route>
+        <Route path="/songs/:id">
+          <Song />
+        </Route>
+        <Route path="/songs">
+          <SongsCollection />
+        </Route>
 
-          <Route path="/me">
-            <MyAccount user={user} />
-          </Route>
-          <Route path="/">
-            {console.log(user)}
-            <Login onLogin={setUser} />
-          </Route>
+        <Route path="/me">
+          <MyAccount currentUser={currentUser} />
+        </Route>
+        <Route path="/">
+          {console.log(currentUser)}
+          <Login onLogin={setCurrentUser} />
+        </Route>
 
-        </Switch>
+      </Switch>}
 
-      <NavBar user={user} setUser={setUser} />
+      <NavBar currentUser={currentUser} setCurrentUser={setCurrentUser} />
     </div>
   );
 }

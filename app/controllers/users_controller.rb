@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
     def show
         user = set_user
-        render json: user, serializer: UserWithLikedSongsSerializer
+        render json: user, include:'**', serializer: UserWithLikedSongsSerializer
     end
 
     def create
