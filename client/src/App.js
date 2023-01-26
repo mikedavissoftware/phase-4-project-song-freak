@@ -19,6 +19,7 @@ import NavBar from "./components/NavBar"
 
 function App() {
   const [user, setUser] = useState(null);
+  const [allSongs, setAllSongs] = useState([])
 
   useEffect(() => {
     // auto-login
@@ -29,9 +30,15 @@ function App() {
     });
   }, []);
 
-   //console.log(user)
+  useEffect(() => {
+    fetch("/songs")
+    .then(r => r.json())
+    .then(songsData => {
+      setAllSongs(songsData)
+    })
+  }, [])
 
-  // if (!user) return <Login onLogin={setUser} />;
+  if (!user) return <Login onLogin={setUser} />;
 
   return (
     <div className="App">
@@ -45,7 +52,7 @@ function App() {
             <User />
           </Route>
           <Route path="/users">
-            <UsersCollection />
+            <UsersCollection allSongs={allSongs} />
           </Route>
 
           <Route path="/songs/new">

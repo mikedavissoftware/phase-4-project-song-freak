@@ -3,7 +3,7 @@ import { Card } from "semantic-ui-react";
 import UserCard from "./UserCard"
 
 
-export default function UsersCollection() {
+export default function UsersCollection({allSongs}) {
 
   const [users, setUsers] = useState([])
 
@@ -20,7 +20,7 @@ export default function UsersCollection() {
 
 
   const mappedUsers = users.map(user => {
-    return <UserCard key={user.id} user={user} />
+    return <UserCard key={user.id} user={user} allSongs={allSongs} />
   })
 
   return (
