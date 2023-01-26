@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+import EditSongForm from "./EditSongForm"
 
 
 
@@ -23,6 +24,7 @@ export default function Song() {
   return (
     <div>
       <h2>{song.title}</h2>
+      <EditSongForm song={song}/>
     </div>
   )
 }
