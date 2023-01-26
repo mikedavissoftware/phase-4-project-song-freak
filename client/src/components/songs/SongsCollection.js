@@ -8,6 +8,7 @@ import SongCard from "../songs/SongCard"
 export default function SongsCollection() {
 
   const [songs, setSongs] = useState([])
+  const [searchQuery, setSearchQuery] = useState("")
 
   useEffect(() => {
     fetch("/songs")
@@ -19,10 +20,10 @@ export default function SongsCollection() {
 
   const filteredSongs = songs.filter(song => {
     return (
-      song.title.toString().toLowerCase().includes(searchQuery.toLowerCase())
-      ||song.artist.toString().includes(searchQuery.toLowerCase())
-      ||song.genre.toString().toLowerCase().includes(searchQuery.toLowerCase())
-      ||song.link.toString().toLowerCase().includes(searchQuery.toLowerCase())
+      song.title.toLowerCase().includes(searchQuery.toLowerCase())
+      ||song.artist.toLowerCase().includes(searchQuery.toLowerCase())
+      ||song.genre.toLowerCase().includes(searchQuery.toLowerCase())
+      ||Number(song.users.length).toString().includes(searchQuery)
     )
   })
 

@@ -1,19 +1,18 @@
+import { useEffect } from "react"
 import { Link } from "react-router-dom"
 
 
 
 export default function SongCard({song}) {
 
-  const {title, artist, genre, link, id} = song
+  const {title, artist, genre, link, id, users} = song
 
   const editedLink = `https://open.spotify.com/embed/track/${link.slice(31,53)}?utm_source=generator`
 
-  console.log(song.users)
-
   return (
     <>
-    <h3>{title}</h3>
-    <h4>{artist} | <em>{genre}</em> | Liked by {} users</h4>
+    <span><h3>{title}<em> by {artist}</em></h3></span>
+    <h4><em>{genre}</em> | {users.length} Likes</h4>
 
     <iframe
       // style="border-radius:12px"
@@ -29,7 +28,7 @@ export default function SongCard({song}) {
 
     <br></br>
 
-    <Link to={`${id}`}>More Information</Link>
+    <Link to={`/songs/${id}`}>More Information</Link>
     
     <hr width="80%"></hr>
     </>
