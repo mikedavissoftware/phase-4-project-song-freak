@@ -14,7 +14,7 @@ import SongsCollection from "./components/songs/SongsCollection"
 import MyAccount from "./components/account/MyAccount"
 import Login from "./components/account/Login"
 import NavBar from "./components/NavBar"
-import EditSongForm from "./components/songs/EditSongForm"
+// import EditSongForm from "./components/songs/EditSongForm"
 
 
 
@@ -45,12 +45,12 @@ function App() {
       <h1>ayyy</h1>
 
       <NavBar currentUser={currentUser} setCurrentUser={setCurrentUser} />
-
+      
       {!currentUser ? <Login onLogin={setCurrentUser} /> :
       <Switch>
 
         <Route path="/users/:id">
-          <User />
+          <User allSongs={allSongs}/>
         </Route>
         <Route path="/users">
           <UsersCollection allSongs={allSongs} />

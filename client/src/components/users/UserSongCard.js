@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 
 
-export default function SongCard({song}) {
+export default function UserSongCard({song}) {
 
   const {title, artist, genre, link, id, users} = song
 
@@ -13,26 +13,24 @@ export default function SongCard({song}) {
 
   return (
     <>
-    <span><h3>{title}<em> by {artist}</em></h3></span>
-    <h4><em>{genre}</em> | {song.users.length} Likes</h4>
-    
+    <br></br>
+    {/* <span><h3>{title}<em> by {artist}</em></h3></span>
+    <h4><em>{genre}</em> | {song.users.length} Likes</h4> */}
+
+    <span><strong>{title}</strong><em> by {artist} | </em><Link to={`/songs/${id}`}>More Information</Link></span>
     <iframe
       // style="border-radius:12px"
       src={editedLink}
-      width="50%"
-      height="352"
+      width="90%"
+      height="200"
       frameBorder=""
       allowfullscreen=""
       allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
       loading="lazy"
     >
     </iframe>
-
-    <br></br>
-
-    <Link to={`/songs/${id}`}>More Information</Link>
     
-    <hr width="80%"></hr>
+    <hr width="30%"></hr>
     </>
   )
 }

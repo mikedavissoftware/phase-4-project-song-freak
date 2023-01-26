@@ -5,7 +5,9 @@ import { Item, Card } from 'semantic-ui-react'
 import UserSongsCollection from "./UserSongsCollection"
 
 
-export default function User() {
+export default function User({allSongs}) {
+
+  console.log(allSongs)
 
   const [user, setUser] = useState(null)
 
@@ -15,75 +17,37 @@ export default function User() {
     .then(r => r.json())
     .then(userData => {
       setUser(userData)
-      console.log(userData)
     })
   }, [id])
 
-  // console.log(user.songs)
-
-  // const [users, setUsers] = useState([])
-  // useEffect(() => {
-  //   fetch(`/users`)
-  //   .then(r => r.json())
-  //   .then(usersData => {
-  //     setUsers(usersData)
-  //   })
-  // }, [])
-
-  // const userSongs = user.songs.map((song) => {
-  //   return (
-  //     <Item>
-  //       <Item.Image size='tiny' src={song.game.image} />
-  //       <Item.Content>
-  //         <Item.Header><strong>"{song.title}"</strong></Item.Header>
-  //         <Item.Meta><em>{song.title} | {song.rating}/10</em></Item.Meta>
-  //         <Item.Description>"{song.text}"</Item.Description>
-  //       </Item.Content>
-  //     </Item>
-  //   )
-  // })
-
-  // const otherUsers = users.filter((otherUser) => {
-  //   if (otherUser.id != User.id) return otherUser
-  // })
-  // const otherUserCards = otherUsers.map((otherUser) => {
-  //   return (
-  //     <Card 
-  //       image={otherUser.image}
-  //       header={<Link to={`/users/${otherUser.id}`}>{otherUser.name}</Link>}
-  //     />
-  //   )
-  // })
-
   if (!user) return <h2>Loading...</h2>;
 
-  if (user) return (
-    <>
-    <UserSongsCollection user={user} />
-      {/* <div idName="user-detail">
-        <Item.Image size='medium' src={user.image} />
-        <Item.Content>
-          <Item.Header><strong>{user.name}</strong></Item.Header>
-          <h2>{user.name}</h2>
-          <Item.Meta>
-            <em>Age{user.age} | {user.fav_genre} | {user.fav_song_id}</em>
-            <br></br>
-            <em><strong>Favorite Game: </strong></em>
-          </Item.Meta>
-          <Item.Description>{user.bio}</Item.Description>
-        </Item.Content>
-      </div>
-      <hr></hr>
-      <h2>Songs from this user:</h2>
-      <div idName="user-songs">
-        {userSongs}
-      </div>
+  console.log(user.fav_song_id)
 
-      <hr></hr>
-      
-      <Card.Group itemsPerRow={5} >
-        {otherUserCards}
-      </Card.Group> */}
+  // const favoriteSong = () => {
+  //   if (allSongs) {
+  //     return allSongs[user.fav_song_id - 1].title
+  //   } else {
+  //     return "Loading..."
+  //   }
+  // }
+
+
+  if (user && allSongs) return (
+    <>
+    <div idName="user-detail">
+      <h2>{user.username}</h2>
+      <Item.Image size='medium' src={user.image} />
+      <Item.Content>
+        
+        <Item.Meta>
+          <em>Age:</em> {user.age} | <em>Favorite Genre:</em> {user.fav_genre} | <em>Favorite Song:</em> {allSongs[user.fav_song_id - 1].title}
+          <br></br>
+        </Item.Meta>
+        <Item.Description>{user.bio}</Item.Description>
+      </Item.Content>
+    </div>
+    <UserSongsCollection user={user} />
     </>
   )
 }
