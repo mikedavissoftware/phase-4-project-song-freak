@@ -57,7 +57,7 @@ function App() {
         </Route>
 
         <Route path="/songs/new">
-          <AddNewSong />
+          <AddNewSong/>
         </Route>
         <Route path="/songs/:id">
           <Song />

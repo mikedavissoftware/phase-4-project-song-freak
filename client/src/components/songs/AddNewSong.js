@@ -1,13 +1,30 @@
 import {useState} from "react"
 
 
-export default function AddNewSong() {
-  const [formData, setFormData] = useState({
-      title: "",
-      artist: "",
-      genre: "",
-      link: "",
-  })
+  export default function AddNewSong({onAddNewSong}) {
+    const [formData, setFormData] = useState({
+        title: "",
+        artist: "",
+        genre: "",
+        link: "",
+    })
+
+    const genres = [
+      "Rock",
+      "Hip Hop",
+      "Electronic",
+      "Metal",
+      "Pop",
+      "Classical",
+      "Country",
+      "Experimental",
+      "R&B",
+      "Jazz"
+    ]
+
+    const genreOptions = genres.map((genre) => {
+      return <option value={genre}>{genre}</option>
+    })
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -41,18 +58,26 @@ export default function AddNewSong() {
       setFormData({...formData, [event.target.name]: event.target.value})
   }
 
-  return (
-    <div className="new-shoe-form">
-      <h2>Post Your Favorite Songs</h2>
-      
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="title" placeholder="Song Title" onChange={handleChange} value={formData.title} />
-        <input type="text" name="artist" placeholder="Artist Name" onChange={handleChange} value={formData.artist} />
-        <input type="text" name="genre" placeholder="Genre" onChange={handleChange} value={formData.genre} />
-        <input type="text" name="link" placeholder="Spotify Song Link" onChange={handleChange} value={formData.link} />
-        <button type="submit">Post Song</button>
-      </form>
+    return (
+        <div className="new-shoe-form">
+            <h2>Post Your Favorite Songs</h2>
+            
+          
+            
+            <form onSubmit={handleSubmit}>
+                <input type="text" name="title" placeholder="Song Title" onChange={handleChange} value={formData.title} />
+                <input type="text" name="artist" placeholder="Artist Name" onChange={handleChange} value={formData.artist} />
+                {/* <input type="text" name="genre" placeholder="Genre" onChange={handleChange} value={formData.genre} /> */}
+                
+                <select id="genre" name="genre" onChange={handleChange}>
+                  <option value={["unspecified"]} disabled selected>Select Genre...</option>
+                  {genreOptions}
+                </select>
+                <input type="text" name="link" placeholder="Spotify Song Link" onChange={handleChange} value={formData.link} />
+                <button type="submit">Post Song</button>
+            </form>
+        </div>
 
-    </div>
-  );
+    );
 }
+
