@@ -14,6 +14,7 @@ import SongsCollection from "./components/songs/SongsCollection"
 import MyAccount from "./components/account/MyAccount"
 import Login from "./components/account/Login"
 import NavBar from "./components/NavBar"
+import EditSongForm from "./components/songs/EditSongForm"
 
 
 
@@ -72,6 +73,9 @@ function App() {
             {console.log(user)}
             <Login onLogin={setUser} />
           </Route>
+
+          
+
 
         </Switch>
 
