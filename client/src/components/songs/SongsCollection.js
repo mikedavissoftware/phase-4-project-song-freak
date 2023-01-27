@@ -8,8 +8,14 @@ import SongCard from "../songs/SongCard"
 
 export default function SongsCollection({currentUser}) {
 
+  console.log(currentUser.songs)
   const [songs, setSongs] = useState([])
   const [searchQuery, setSearchQuery] = useState("")
+  const [userSongIds, setUserSongIds] = useState(
+    currentUser.songs.map((song) => {
+    return song.id
+    })
+  )
 
   useEffect(() => {
     fetch("/songs")
@@ -29,12 +35,12 @@ export default function SongsCollection({currentUser}) {
   })
 
   const mappedSongs = filteredSongs.map(song => {
-    return <SongCard key={song.id} song={song} currentUser={currentUser} />
+    return <SongCard key={song.id} song={song} currentUser={currentUser} userSongIds={userSongIds} setUserSongIds={setUserSongIds} />
   })
 
-  function handleAddNewSong(newSong) {
-    setSongs([...songs, newSong])
-  }
+  // function handleAddNewSong(newSong) {
+  //   setSongs([...songs, newSong])
+  // }
 
   return (
     <>

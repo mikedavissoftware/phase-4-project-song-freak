@@ -4,16 +4,17 @@ import { Button, Icon, Label} from "semantic-ui-react"
 
 
 
-export default function SongCard({song, currentUser}) {
+export default function SongCard({song, currentUser, userSongIds, setUserSongIds}) {
 
+  console.log(userSongIds)
   const {title, artist, genre, link, users} = song
 
   const editedLink = `https://open.spotify.com/embed/track/${link.slice(31,53)}?utm_source=generator`
 
-  const songIds = currentUser.songs.map((song) => {
-    return song.id
-  })
-  console.log(songIds)
+  // const songIds = currentUser.songs.map((song) => {
+  //   return song.id
+  // })
+  // console.log(songIds)
 
   console.log(currentUser.likes)
 
@@ -25,8 +26,7 @@ export default function SongCard({song, currentUser}) {
       },
       body: JSON.stringify({user_id: currentUser.id, song_id: song.id})
     })
-    console.log(currentUser)
-    console.log(currentUser.songs.length)
+    setUserSongIds([...userSongIds, song.id])
   }
 
   // function handleLikeDestroy() {
@@ -46,7 +46,7 @@ export default function SongCard({song, currentUser}) {
     <div>
       <Button as='div' labelPosition='right'>
         <Button icon onClick={handleLikeCreate}>
-          {(songIds.includes(song.id)) ?
+          {(userSongIds.includes(song.id)) ?
             <Icon name='heart' />
              :
             <Icon name='heart outline' />
