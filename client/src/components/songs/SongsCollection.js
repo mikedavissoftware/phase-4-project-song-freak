@@ -6,7 +6,7 @@ import AddNewSong from "./AddNewSong"
 import SongCard from "../songs/SongCard"
 
 
-export default function SongsCollection() {
+export default function SongsCollection({currentUser}) {
 
   const [songs, setSongs] = useState([])
   const [searchQuery, setSearchQuery] = useState("")
@@ -29,7 +29,7 @@ export default function SongsCollection() {
   })
 
   const mappedSongs = filteredSongs.map(song => {
-    return <SongCard key={song.id} song={song} />
+    return <SongCard key={song.id} song={song} currentUser={currentUser} />
   })
 
   function handleAddNewSong(newSong) {

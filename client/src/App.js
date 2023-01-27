@@ -22,6 +22,8 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [allSongs, setAllSongs] = useState([])
 
+  console.log(currentUser)
+
   useEffect(() => {
     // auto-login
     fetch("/me").then((r) => {
@@ -63,7 +65,7 @@ function App() {
           <Song />
         </Route>
         <Route path="/songs">
-          <SongsCollection />
+          <SongsCollection currentUser={currentUser} />
         </Route>
 
         <Route path="/me">

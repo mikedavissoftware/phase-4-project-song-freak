@@ -1,32 +1,22 @@
 class LikesController < ApplicationController
 
-    before_action :find_post
-    before_action :find_like, only: [:destroy]
-
     def create
-        @song.likes.create(user_id: current_user.id)
-        redirect_to_song_path(@song)
+        like = Like.create!(like_params)
+        render json: like, status: :created
     end
 
     def destroy
-        @like.destroy
-        redirect_to_song_path(@song)
+        like = Like.find_by(like_params)
+        like.destroy!
+        head :no_content
     end
 
     private
 
-    def find_song
-        @song = Song.find_by(params[:id]))
+    def like_params
+        params.permit(:user_id, :song_id)
     end
 
-    def already_liked?
-        Like.where(user_id: current_user.id, song_id:
-        params[:song_id]).exists?
-    end
-
-    def find_like
-        @like = @song.likes.find(params[:id])
-    end
 end
 
 

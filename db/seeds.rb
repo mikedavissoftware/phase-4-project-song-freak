@@ -188,7 +188,7 @@ song_create
 # Likes
 puts "🌱 Seeding likes..."
 (1..20).to_a.map{|song_id|
-  users = (1..10).to_a.shuffle.take(rand(2..6))
+  users = (1..11).to_a.shuffle.take(rand(2..6))
   users.map{|user_id|
     Like.create(
       user_id: user_id,

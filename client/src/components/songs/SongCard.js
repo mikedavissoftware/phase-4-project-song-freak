@@ -4,42 +4,56 @@ import { Button, Icon, Label} from "semantic-ui-react"
 
 
 
-export default function SongCard({song}) {
+export default function SongCard({song, currentUser}) {
 
-  const {title, artist, genre, link, id, users} = song
+  const {title, artist, genre, link, users} = song
 
   const editedLink = `https://open.spotify.com/embed/track/${link.slice(31,53)}?utm_source=generator`
 
-  // console.log(users)
+  const songIds = currentUser.songs.map((song) => {
+    return song.id
+  })
+  console.log(songIds)
 
-  function handleLikeChange() {
+  console.log(currentUser.likes)
 
-    // let newLikeCount = likeCount + 1
+  function handleLikeCreate() {
+    fetch(`/likes`, {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json",
+      },
+      body: JSON.stringify({user_id: currentUser.id, song_id: song.id})
+    })
+    console.log(currentUser)
+    console.log(currentUser.songs.length)
+  }
 
-    // console.log(newLikeCount)
-
-//     fetch(`/songs/${id}`, {
-//         method: "PATCH",
-//         headers: {
-//             "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify({like_count: newLikeCount})
-//     })
-// }
+  // function handleLikeDestroy() {
+  //   fetch(`/likes/${id}`, {
+  //     method: "DELETE"
+  //   })
+  //   console.log(currentUser)
+  //   console.log(currentUser.songs.length)
+  // }
+  
+  
 
   return (
     <>
     <span><h3>{title}<em> by {artist}</em></h3></span>
-    <h4><em>{genre}</em> | {} Likes</h4>
 
     <div>
       <Button as='div' labelPosition='right'>
-        <Button icon>
-          <Icon name='heart' />
-          Like
+        <Button icon onClick={handleLikeCreate}>
+          {(songIds.includes(song.id)) ?
+            <Icon name='heart' />
+             :
+            <Icon name='heart outline' />
+          }
         </Button>
         <Label as='a' basic pointing='left'>
-          23
+          {song.users.length} Likes
         </Label>
       </Button>
 
@@ -59,7 +73,7 @@ export default function SongCard({song}) {
 
     <br></br>
 
-    <Link to={`/songs/${id}`}>More Information</Link>
+    <Link to={`/songs/${song.id}`}>More Information</Link>
     
     <hr width="80%"></hr>
     </>

@@ -15,7 +15,7 @@ export default function LoginForm({onLogin}) {
       body: JSON.stringify({ username, password }),
     }).then((r) => {
       if (r.ok) {
-        r.json().then((user) => console.log(user));
+        r.json().then((currentUser) => onLogin(currentUser));
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
