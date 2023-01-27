@@ -41,10 +41,15 @@ function App() {
       console.log(allSongs)
     })
   }, [])
+//just added
+  function handleDeleteCurrentUser(id) {
+    const yourUser = currentUser.filter((user) => user.id !== id);
+    setCurrentUser(yourUser);
+  }
 
   return (
     <div className="App">
-      <h1>ayyy</h1>
+      <h1>Song Freak!!</h1>
 
       <NavBar currentUser={currentUser} setCurrentUser={setCurrentUser} />
       
@@ -52,7 +57,7 @@ function App() {
       <Switch>
 
         <Route path="/users/:id">
-          <User allSongs={allSongs}/>
+          <User allSongs={allSongs} currentUser={currentUser} onCurrentUserDelete={handleDeleteCurrentUser} setCurrentUser={setCurrentUser}/>
         </Route>
         <Route path="/users">
           <UsersCollection allSongs={allSongs} />
@@ -69,7 +74,7 @@ function App() {
         </Route>
 
         <Route path="/me">
-          <MyAccount currentUser={currentUser} />
+          <MyAccount currentUser={currentUser}/>
         </Route>
         <Route path="/">
           {console.log(currentUser)}

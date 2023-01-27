@@ -9,13 +9,12 @@ export default function UserCard({user}) {
 
 
   return (
-    <Card 
+  
+    <Card
       image={image}
       header={name}
       meta={`${age} | ${fav_genre}`}
-      
       description={`${bio.substring(0,300)}...`}
-
       extra={<Link to={`/users/${id}`}>More Information</Link>}
     />
   )

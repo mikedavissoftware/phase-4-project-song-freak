@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { Link } from "react-router-dom"
-import { Button, Icon, Label} from "semantic-ui-react"
+import { Button, Icon, Label, Divider, Grid, GridColumn} from "semantic-ui-react"
 
 
 
@@ -16,7 +16,7 @@ export default function SongCard({song, currentUser, userSongIds, setUserSongIds
   // })
   // console.log(songIds)
 
-  console.log(currentUser.likes)
+  // console.log(currentUser.likes)
 
   function handleLikeCreate() {
     fetch(`/likes`, {
@@ -36,6 +36,14 @@ export default function SongCard({song, currentUser, userSongIds, setUserSongIds
   //   console.log(currentUser)
   //   console.log(currentUser.songs.length)
   // }
+
+  // // function handleLikeDestroy() {
+  // //   fetch(`/likes/${id}`, {
+  // //     method: "DELETE"
+  // //   })
+  // //   console.log(currentUser)
+  // //   console.log(currentUser.songs.length)
+  // // }
   
   
 
@@ -44,7 +52,7 @@ export default function SongCard({song, currentUser, userSongIds, setUserSongIds
     <span><h3>{title}<em> by {artist}</em></h3></span>
 
     <div>
-      <Button as='div' labelPosition='right'>
+      {/* <Button as='div' labelPosition='right'>
         <Button icon onClick={handleLikeCreate}>
           {(userSongIds.includes(song.id)) ?
             <Icon name='heart' />
@@ -55,12 +63,13 @@ export default function SongCard({song, currentUser, userSongIds, setUserSongIds
         <Label as='a' basic pointing='left'>
           {song.users.length} Likes
         </Label>
-      </Button>
+      </Button> */}
 
     </div>
-
+    
     <iframe
       // style="border-radius:12px"
+      
       src={editedLink}
       width="50%"
       height="352"
@@ -70,7 +79,7 @@ export default function SongCard({song, currentUser, userSongIds, setUserSongIds
       loading="lazy"
     >
     </iframe>
-
+    
     <br></br>
 
     <Link to={`/songs/${song.id}`}>More Information</Link>
