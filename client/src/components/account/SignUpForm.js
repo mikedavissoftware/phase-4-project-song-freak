@@ -10,6 +10,29 @@ export default function SignUp({onLogin}) {
   const [favGenre, setFavGenre] = useState("")
   const [favSongId, setFavSongId] = useState(1)
   const [errors, setErrors] = useState([]);
+  const [formData, setFormData] = useState({
+        title: "",
+        artist: "",
+        genre: "",
+        link: "",
+    })
+
+    const genres = [
+      "Rock",
+      "Hip Hop",
+      "Electronic",
+      "Metal",
+      "Pop",
+      "Classical",
+      "Country",
+      "Experimental",
+      "R&B",
+      "Jazz"
+    ]
+
+    const genreOptions = genres.map((genre) => {
+      return <option value={genre}>{genre}</option>
+    })
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -37,6 +60,8 @@ export default function SignUp({onLogin}) {
       }
     });
   }
+
+
 
   return (
     <form onSubmit={handleSubmit}>
@@ -95,14 +120,10 @@ export default function SignUp({onLogin}) {
         onChange={(e) => setAge(e.target.value)} 
       />
 
-      <label><strong>Favorite Genre:</strong></label>
-      <input 
-        type="text" 
-        id="favGenre" 
-        placeholder="Enter favorite genre..." 
-        value={favGenre} 
-        onChange={(e) => setFavGenre(e.target.value)} 
-      />
+      <select id="genre" name="genre" onChange={(e) => setFavGenre(e.target.value)}>
+        <option value={["unspecified"]} disabled selected>Select Genre...</option>
+        {genreOptions}
+      </select>
 
       <label><strong>Favorite Song:</strong></label>
       <input 

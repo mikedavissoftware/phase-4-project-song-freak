@@ -27,8 +27,7 @@ class UsersController < ApplicationController
     end
 
     def destroy
-        user = set_user
-        user.destroy
+        @current_user.destroy
         head :no_content
     end
 

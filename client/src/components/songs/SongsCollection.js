@@ -49,7 +49,7 @@ export default function SongsCollection({currentUser}) {
    
     </input>
     {/* <AddNewSong onAddNewSong={handleAddNewSong}/> */}
-    <Item.Group >
+    <Item.Group itemsPerRow={2}>
       {mappedSongs}
     </Item.Group>
 
