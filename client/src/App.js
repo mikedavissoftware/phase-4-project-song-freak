@@ -1,5 +1,5 @@
 import React from "react"
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react"
 
 // import logo from './logo.svg';
@@ -21,6 +21,8 @@ import NavBar from "./components/NavBar"
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [allSongs, setAllSongs] = useState([])
+
+  const history = useHistory();
 
   console.log(currentUser)
 
@@ -53,7 +55,7 @@ function App() {
 
       <NavBar currentUser={currentUser} setCurrentUser={setCurrentUser} />
       
-      {!currentUser ? <Login onLogin={setCurrentUser} /> :
+      {!currentUser ? <Login onLogin={setCurrentUser} history={history} /> :
       <Switch>
 
         <Route path="/users/:id">
@@ -64,7 +66,7 @@ function App() {
         </Route>
 
         <Route path="/songs/new">
-          <AddNewSong/>
+          <AddNewSong history={history} />
         </Route>
         <Route path="/songs/:id">
           <Song />
@@ -78,7 +80,7 @@ function App() {
         </Route>
         <Route path="/">
           {console.log(currentUser)}
-          <Login onLogin={setCurrentUser} />
+          <Login onLogin={setCurrentUser} history={history} />
         </Route>
 
       </Switch>}

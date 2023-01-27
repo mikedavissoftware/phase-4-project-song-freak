@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function SignUp({onLogin}) {
+export default function SignUp({onLogin, redirect}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
@@ -59,6 +59,8 @@ export default function SignUp({onLogin}) {
         r.json().then((err) => setErrors(err.errors));
       }
     });
+
+    redirect()
   }
 
 

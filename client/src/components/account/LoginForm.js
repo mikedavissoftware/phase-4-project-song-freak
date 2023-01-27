@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function LoginForm({onLogin}) {
+export default function LoginForm({onLogin, redirect}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -20,6 +20,8 @@ export default function LoginForm({onLogin}) {
         r.json().then((err) => setErrors(err.errors));
       }
     });
+
+    redirect()
   }
 
   return(

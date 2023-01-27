@@ -1,13 +1,17 @@
 import {useState} from "react"
 
 
-  export default function AddNewSong({onAddNewSong}) {
+  export default function AddNewSong({onAddNewSong, history}) {
     const [formData, setFormData] = useState({
         title: "",
         artist: "",
         genre: "",
         link: "",
     })
+
+    const redirect = () => {
+      history.push('/songs');
+    }
 
     const genres = [
       "Rock",
@@ -51,6 +55,8 @@ import {useState} from "react"
         link: "",
       })
     )
+
+    redirect()
   }
 
   function handleChange(event) {

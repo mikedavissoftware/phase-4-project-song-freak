@@ -52,7 +52,7 @@ export default function SongCard({song, currentUser, userSongIds, setUserSongIds
     <span><h3>{title}<em> by {artist}</em></h3></span>
 
     <div>
-      {/* <Button as='div' labelPosition='right'>
+      <Button as='div' labelPosition='right'>
         <Button icon onClick={handleLikeCreate}>
           {(userSongIds.includes(song.id)) ?
             <Icon name='heart' />
@@ -63,7 +63,7 @@ export default function SongCard({song, currentUser, userSongIds, setUserSongIds
         <Label as='a' basic pointing='left'>
           {song.users.length} Likes
         </Label>
-      </Button> */}
+      </Button>
 
     </div>
     
